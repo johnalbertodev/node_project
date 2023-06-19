@@ -27,7 +27,9 @@ jobs:
         
 
       - name: Run application
-        run: node index.js
+        run: |
+          output $(node index.js)
+          echo "$output"
        # run: echo "run application"
 
 
