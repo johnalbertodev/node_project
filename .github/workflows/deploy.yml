@@ -1,26 +1,31 @@
-# This is a basic workflow to help you get started with Actions
+name: Node.js Deployment
 
-name: Nodejs Deployment
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - master
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - master
   workflow_dispatch:
 
 jobs:
- 
   build:
     runs-on: ubuntu-latest
-    steps:
-      
-      - name: check version and run application
-      - run: node --version
-      - run: npm --version
-      - uses: actions/checkout@v3
-      - run: npm install
-      - run: index.js
-        
 
-      
+    steps:
+      - name: Check Node.js and npm versions
+        run: |
+          node --version
+          npm --version
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run application
+        run: node index.js
+
      
