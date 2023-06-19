@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Check Node.js and npm versions
@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: npm install
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
       - name: Run application
