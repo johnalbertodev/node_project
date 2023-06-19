@@ -24,8 +24,11 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        
 
       - name: Run application
-        run: node index.js
+        #run: node index.js
+        run: echo "run application"
+
 
      
