@@ -27,7 +27,7 @@ jobs:
      steps: 
        - name: install_pm2
          run: |
-              sudo npm i -g pm2
+              sudo npm install pm2@latest -g
               echo "verify install pm2"
               pm2
               
