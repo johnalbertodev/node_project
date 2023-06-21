@@ -44,6 +44,11 @@ jobs:
     steps:
      - name: checkout-action
        uses: actions/checkout@v3
+     - name: Restore PM2 from cache
+       uses: actions/cache@v2
+       with:
+         path: ~/.pm2
+         key: pm2
      - name: message
        run: |
             echo "verify install pm2"
