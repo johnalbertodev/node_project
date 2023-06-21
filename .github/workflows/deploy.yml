@@ -38,6 +38,8 @@ jobs:
     needs: [Installing_node_js, Installing_pm2]
     runs-on: ubuntu-latest
     steps:
+     - name: checkout-action
+       uses: actions/checkout@v3
      - name: message
        run: |
             cd ~
