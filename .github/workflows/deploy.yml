@@ -30,7 +30,8 @@ jobs:
          uses: actions/checkout@v3
        - name: install_pm2
          run: |
-              sudo npm install pm2@latest -g
+             
+              sudo npm i -g pm2
               echo "verify install pm2"
               pm2 --version
               
