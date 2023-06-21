@@ -46,6 +46,9 @@ jobs:
             ls -al
             cd node_project
             ls -al
+            cd node_project
+            ls -al
+            pwd
             
            
             
