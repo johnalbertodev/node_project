@@ -40,7 +40,9 @@ jobs:
     steps:
      - name: message
        run: |
+            cd ~
             ls -al
+            
            
             
     
