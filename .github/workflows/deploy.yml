@@ -53,6 +53,7 @@ jobs:
             cd node_project
             ls -al
             pwd
+            cd home/runner/work/node_project/node_project
             pm2 start ./index.js
            
             
