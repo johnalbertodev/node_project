@@ -36,6 +36,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: echo"second job"
+     - name: message
+       run: |
+            echo "second job"
     
       
