@@ -30,7 +30,6 @@ jobs:
          uses: actions/checkout@v3
        - name: install_pm2
          run: |
-             
               sudo npm i -g pm2
               echo "verify install pm2"
               pm2 --version
@@ -45,15 +44,10 @@ jobs:
        uses: actions/checkout@v3
      - name: message
        run: |
+            echo "verify install pm2"
+            pm2 --version
             cd ~
-            ls -al
-            cd work
-            ls -al
-            cd node_project
-            ls -al
-            cd node_project
-            ls -al
-            pwd
+            
             cd /home/runner/work/node_project/node_project
             pm2 start ./index.js
            
