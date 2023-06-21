@@ -23,6 +23,7 @@ jobs:
               node --version
               npm --version
   Installing_pm2:
+     needs: Installing_node_js
      runs-on: ubuntu-latest
      steps: 
        - name: install_pm2
@@ -34,6 +35,7 @@ jobs:
   
        
   deploy:
+    needs: [Installing_node_js, Installing_pm2]
     runs-on: ubuntu-latest
     steps:
      - name: message
