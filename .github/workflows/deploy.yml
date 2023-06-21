@@ -33,8 +33,8 @@ jobs:
               sudo npm i -g pm2
               echo "verify install pm2"
               pm2 --version
-              pm2 start index.js
-              ip
+             
+              
               
   
        
