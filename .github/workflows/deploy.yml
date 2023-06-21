@@ -41,5 +41,7 @@ jobs:
      - name: message
        run: |
             echo "second job"
+            ls
+            pwd
     
       
