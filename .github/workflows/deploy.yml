@@ -43,7 +43,7 @@ jobs:
             echo "second job"
             ls
             pwd
-            cd ~/home/runner/work/node_project/node_project
+            cd /home/runner/work/node_project/node_project
             ls
             
     
