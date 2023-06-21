@@ -45,5 +45,5 @@ jobs:
       - name: Start application with PM2
         run: |
            pwd
-           cd actions-runner/_work/node_project/node_project
+           cd /actions-runner/_work/node_project/node_project
            pm2 start index.js
