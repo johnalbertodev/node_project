@@ -14,7 +14,8 @@ jobs:
   configure_software:
       runs-on: ubuntu-latests
       steps:
-       - uses: actions/checkout@v3
+       - name: checkout-action
+         uses: actions/checkout@v3
        - name: install_nodejs
        - run: |
               curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
