@@ -30,8 +30,6 @@ jobs:
         run: |
           sudo npm install -g pm2
           which pm2
-          echo 'export PATH="$HOME/.npm-global/bin:$PATH"' >> $HOME/.bashrc
-          source $HOME/.bashrc
           pm2 --version
 
   deploy:
@@ -45,5 +43,6 @@ jobs:
         run: pm2 --version || true 
       - name: Start application with PM2
         run: |
+          export PATH="$PATH:/home/runner/.npm-global/bin"
           cd /home/runner/work/node_project/node_project
           pm2 start index.js
