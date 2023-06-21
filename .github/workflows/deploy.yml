@@ -11,7 +11,7 @@ on:
 jobs:
 
     
-  configure_software:
+  Installing_node_js:
       runs-on: ubuntu-latest
       steps:
        - name: checkout-action
@@ -21,6 +21,17 @@ jobs:
               curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
               sudo apt-get install nodejs
               node --version
+              npm --version
+  Installing_pm2:
+     runs-on: ubuntu-latest
+     steps: 
+       - name: install_pm2
+         run: |
+              sudo npm i -g pm2
+              echo "verify install pm2"
+              pm2
+              
+  
        
   deploy:
     runs-on: ubuntu-latest
