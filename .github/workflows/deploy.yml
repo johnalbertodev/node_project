@@ -26,6 +26,8 @@ jobs:
      needs: Installing_node_js
      runs-on: ubuntu-latest
      steps: 
+       - name: checkout-action
+         uses: actions/checkout@v3
        - name: install_pm2
          run: |
               sudo npm install pm2@latest -g
