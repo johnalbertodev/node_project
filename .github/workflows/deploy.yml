@@ -47,3 +47,4 @@ jobs:
            pwd
            cd /home/ubuntu/actions-runner/_work/node_project/node_project
            pm2 start index.js
+           pm2 logs
