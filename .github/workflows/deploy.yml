@@ -51,7 +51,7 @@ jobs:
             cd node_project
             ls -al
             pwd
-            
+            pm2 start ./index.js
            
             
     
