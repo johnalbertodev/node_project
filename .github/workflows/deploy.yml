@@ -30,7 +30,7 @@ jobs:
 #     - run: npm test
     
   configure_software:
-      runs-on: self-hosted
+      runs-on: ubuntu-latests
       steps:
        - uses: actions/checkout@v3
        - name: install_nodejs
@@ -38,7 +38,7 @@ jobs:
               curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
               sudo apt-get install nodejs
   deploy:
-    runs-on: ubuntu-lates
+    runs-on: ubuntu-latest
     steps:
       - run: echo"second job"
     
