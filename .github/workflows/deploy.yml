@@ -40,11 +40,8 @@ jobs:
     steps:
      - name: message
        run: |
-            cd _work/node_project/node_project
-            ls
-            
-            
-  # pm2 start index.js
+            ls -al
+           
             
     
       
