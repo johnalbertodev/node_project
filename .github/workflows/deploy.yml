@@ -40,7 +40,8 @@ jobs:
     steps:
      - name: message
        run: |
-            pwd
+            cd _work
+            cd 
             pm2 start index.js
             
     
