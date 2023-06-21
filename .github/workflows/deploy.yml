@@ -34,21 +34,16 @@ jobs:
 
   deploy:
     needs: [build, Installing_pm2]
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-        
-           
-     
+        uses: actions/checkout@v3 
       - name: Verify PM2 installation
-      
         run: |
             sudo npm install -g pm2
             pm2 --version || true 
-        
       - name: Start application with PM2
         run: |
-          export PATH="$PATH:/home/runner/.npm-global/bin"
-          cd /home/runner/work/node_project/node_project
-          pm2 start index.js
+           pwd
+           cd actions-runner/_work/node_project/node_project
+           pm2 start index.js
