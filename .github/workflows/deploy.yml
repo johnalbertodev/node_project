@@ -29,6 +29,8 @@ jobs:
       - name: Install PM2
         run: |
           sudo npm install -g pm2
+          echo 'export PATH="$HOME/.npm-global/bin:$PATH"' >> $HOME/.bashrc
+          source $HOME/.bashrc
           pm2 --version
 
   deploy:
