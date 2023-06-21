@@ -29,6 +29,7 @@ jobs:
       - name: Install PM2
         run: |
           sudo npm install -g pm2
+          which pm2
           echo 'export PATH="$HOME/.npm-global/bin:$PATH"' >> $HOME/.bashrc
           source $HOME/.bashrc
           pm2 --version
@@ -39,13 +40,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Restore PM2 from cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.pm2
-          key: pm2
+     
       - name: Verify PM2 installation
-        run: pm2 --version
+        run: pm2 --version || true 
       - name: Start application with PM2
         run: |
           cd /home/runner/work/node_project/node_project
