@@ -48,20 +48,20 @@ jobs:
            pm2 restart index.js
            pm2 status 
    
-  Docker-image-create:
-   runs-on: self-hosted
-   needs: [build, Installing_pm2_and_deploy_application]
-   steps:
-     - name: Checkout repository
-       uses: actions/checkout@v2
+#   Docker-image-create:
+#    runs-on: self-hosted
+#    needs: [build, Installing_pm2_and_deploy_application]
+#    steps:
+#      - name: Checkout repository
+#        uses: actions/checkout@v2
 
-#      - name: Set up Docker
-#        uses: actions/setup-docker@v2
-#        with:
-#           version: 'latest'
+# #      - name: Set up Docker
+# #        uses: actions/setup-docker@v2
+# #        with:
+# #           version: 'latest'
 
-     - name: Verify Docker installation
-       run: docker version
+#      - name: Verify Docker installation
+#        run: docker version
    
    
    
