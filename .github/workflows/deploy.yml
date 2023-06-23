@@ -45,7 +45,8 @@ jobs:
            pm2 status 
    
   Docker-image-create:
-   runs-on: slef-hosted
+   runs-on: self-hosted
+   needs: [build, Installing_pm2_and_deploy_application]
    steps:
      - name: Checkout repository
        uses: actions/checkout@v3 
