@@ -41,6 +41,5 @@ jobs:
         run: |
            pwd
            cd /home/ubuntu/actions-runner/_work/node_project/node_project
-         
            pm2 restart index.js
            pm2 status 
