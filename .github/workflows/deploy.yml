@@ -46,7 +46,7 @@ jobs:
         run: |
            pwd
            cd /home/ubuntu/actions-runner/_work/node_project/node_project
-           pm2 restart index.js
+           pm2 start index.js
            pm2 status 
   Create_Docker_image:
    needs: [Installing_pm2_and_deploy_application]
