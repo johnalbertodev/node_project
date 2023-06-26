@@ -56,7 +56,7 @@ jobs:
        uses: actions/checkout@v3
      - name: build image
        run: |           
-            sudo docker build /home/ubuntu/actions-runner/_work/Node_project/Node_project --tag my-node-app
+            sudo docker build /home/ubuntu/actions-runner/_work/node_project/node_project --tag my-node-app
      - name: check docker images
        run: |           
            docker images
