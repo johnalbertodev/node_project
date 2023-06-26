@@ -59,7 +59,7 @@ jobs:
             sudo docker build /home/ubuntu/actions-runner/_work/node_project/node_project --tag my-node-app
      - name: check docker images
        run: |           
-           docker images
+          sudo docker images
 
    
 
