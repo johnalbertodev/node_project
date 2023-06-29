@@ -64,6 +64,19 @@ jobs:
        run: |           
           sudo docker images
 
+#   Pushing_Docker_image_in_jfrog:
+#    needs: Create_Docker_image
+#    runs-on: self-hosted
+#    steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v2
+#     - name: Push Docker image
+#       run: |
+#         docker login -umalvinder@arintech.in -p ${{ secrets.DOCKER_PASSWORD }} malvinder.jfrog.io
+#         docker tag my-node-app:latest malvinder.jfrog.io/my-jfrog-repository/my-node-app:latest
+#         docker push malvinder.jfrog.io/my-jfrog-repository/my-node-app:latest
+
+   
   Pushing_Docker_image_in_jfrog:
    needs: Create_Docker_image
    runs-on: self-hosted
@@ -75,7 +88,4 @@ jobs:
         docker login -umalvinder@arintech.in -p ${{ secrets.DOCKER_PASSWORD }} malvinder.jfrog.io
         docker tag my-node-app:latest malvinder.jfrog.io/my-jfrog-repository/my-node-app:latest
         docker push malvinder.jfrog.io/my-jfrog-repository/my-node-app:latest
-
-   
-   
    
