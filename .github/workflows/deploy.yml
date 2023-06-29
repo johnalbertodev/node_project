@@ -64,7 +64,17 @@ jobs:
        run: |           
           sudo docker images
 
-   
+  Pushing_Docker_image_in_jfrog:
+   needs: Create_Docker_image
+   runs-on: self-hosted
+   steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Push Docker image
+      run: |
+        docker login -umalvinder@arintech.in malvinder.jfrog.io -p ${{ secrets.DOCKER_PASSWORD }} <url of your workspace>
+        docker tag my-node-app:latest <path of your repository>/my-node-app:latest
+        docker push <path of your repository>/my-node-app:latest
 
    
    
