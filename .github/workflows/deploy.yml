@@ -73,8 +73,8 @@ jobs:
     - name: Push Docker image
       run: |
         docker login -umalvinder@arintech.in malvinder.jfrog.io -p ${{ secrets.DOCKER_PASSWORD }} <url of your workspace>
-        docker tag my-node-app:latest <path of your repository>/my-node-app:latest
-        docker push <path of your repository>/my-node-app:latest
+        docker tag my-node-app:latest malvinder.jfrog.io/my-jfrog-repository/my-node-app:latest
+        docker push malvinder.jfrog.io/my-jfrog-repository/my-node-app:latest
 
    
    
