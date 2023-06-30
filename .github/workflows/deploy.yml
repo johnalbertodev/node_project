@@ -49,54 +49,54 @@ jobs:
       run: pm2 status
 
 
-  Create_Docker_image:
-   needs: [Installing_pm2_and_deploy_application]
-   runs-on: self-hosted
-   steps: 
-     - name: Checkout code
-       uses: actions/checkout@v3
-     - name: build image
-       run: |           
-            sudo docker build /home/ubuntu/actions-runner/_work/node_project/node_project --tag my-node-app
-     - name: check docker images
-       run: |           
-          sudo docker images
+#   Create_Docker_image:
+#    needs: [Installing_pm2_and_deploy_application]
+#    runs-on: self-hosted
+#    steps: 
+#      - name: Checkout code
+#        uses: actions/checkout@v3
+#      - name: build image
+#        run: |           
+#             sudo docker build /home/ubuntu/actions-runner/_work/node_project/node_project --tag my-node-app
+#      - name: check docker images
+#        run: |           
+#           sudo docker images
    
-  Pushing_Docker_image_in_jfrog:
-   needs: Create_Docker_image
-   runs-on: self-hosted
-   steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Push Docker image
-      run: |
-        sudo chmod 777 /var/run/docker.sock
-        docker login -umalvinder@arintech.in -p ${{ secrets.DOCKER_PASSWORD }} malvinder.jfrog.io
-        docker tag my-node-app:latest malvinder.jfrog.io/my-jfrog-repository/my-node-app:latest
-        docker push malvinder.jfrog.io/my-jfrog-repository/my-node-app:latest
+#   Pushing_Docker_image_in_jfrog:
+#    needs: Create_Docker_image
+#    runs-on: self-hosted
+#    steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v2
+#     - name: Push Docker image
+#       run: |
+#         sudo chmod 777 /var/run/docker.sock
+#         docker login -umalvinder@arintech.in -p ${{ secrets.DOCKER_PASSWORD }} malvinder.jfrog.io
+#         docker tag my-node-app:latest malvinder.jfrog.io/my-jfrog-repository/my-node-app:latest
+#         docker push malvinder.jfrog.io/my-jfrog-repository/my-node-app:latest
         
-  AWS_login:
-   needs: [Pushing_Docker_image_in_jfrog]
-   runs-on: self-hosted
-   steps:
-   - name: Configure AWS credentials
-     uses: aws-actions/configure-aws-credentials@v1
-     with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
-        run: aws s3 ls
-  Jfrog_ECS_Integration: 
-   needs: [AWS_login]
-   runs-on: self-hosted
-   steps:
-      - uses: actions/checkout@v2
-      - name: Deploy the application to AWS ECS
-        uses: aws-actions/ecs-deploy@v1
-        with:
-          cluster-name: my-cluster
-          task-definition: my-app
-          image: my-app:latest
-          region: us-east-1
+#   AWS_login:
+#    needs: [Pushing_Docker_image_in_jfrog]
+#    runs-on: self-hosted
+#    steps:
+#    - name: Configure AWS credentials
+#      uses: aws-actions/configure-aws-credentials@v1
+#      with:
+#         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#         aws-region: us-east-1
+#         run: aws s3 ls
+#   Jfrog_ECS_Integration: 
+#    needs: [AWS_login]
+#    runs-on: self-hosted
+#    steps:
+#       - uses: actions/checkout@v2
+#       - name: Deploy the application to AWS ECS
+#         uses: aws-actions/ecs-deploy@v1
+#         with:
+#           cluster-name: my-cluster
+#           task-definition: my-app
+#           image: my-app:latest
+#           region: us-east-1
    
       
