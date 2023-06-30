@@ -86,3 +86,17 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
         run: aws s3 ls
+  Jfrog_ECS_Integration: 
+   needs: [AWS_login]
+   runs-on: self-hosted
+   steps:
+      - uses: actions/checkout@v2
+      - name: Deploy the application to AWS ECS
+        uses: aws-actions/ecs-deploy@v1
+        with:
+          cluster-name: my-cluster
+          task-definition: my-app
+          image: my-app:latest
+          region: us-east-1
+   
+      
