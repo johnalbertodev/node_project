@@ -42,7 +42,7 @@ jobs:
       - run: pm2 start index.js
       - name: Configure Nginx
         run: |
-          sudo rm /etc/nginx/sites-enabled/default
+          sudo rm /etc/nginx/sites-enabled/default || true
           echo "server {
               listen 80;
               location / {
