@@ -39,25 +39,10 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build --if-present
-      - run: pm2 start index.js
+      - name: Start application
+        run: node index.js
       
-      - name: Install Nginx
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y nginx
-          sudo mkdir -p /etc/nginx/sites-available
-          sudo mkdir -p /etc/nginx/sites-enabled
-      - name: Configure Nginx
-        run: |
-          sudo rm /etc/nginx/sites-enabled/default || true
-          echo "server {
-              listen 80;
-              location / {
-                  proxy_pass http://localhost:3000;
-              }
-          }" | sudo tee /etc/nginx/sites-available/node-app
-          sudo ln -sf /etc/nginx/sites-available/node-app /etc/nginx/sites-enabled/
-          sudo systemctl restart nginx
+      
       
 #    steps:
 #     - name: Checkout code
