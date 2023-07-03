@@ -46,7 +46,9 @@ jobs:
         cd /home/ubuntu/actions-runner/_work/node_project/node_project
         pm2 start index.js --name "my-node-app"
     - name: Check application status
-      run: pm2 status
+      run: |
+           pm2 status
+           pm2 logs my-node-app
       
 
 
