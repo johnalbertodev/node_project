@@ -5,49 +5,90 @@ on:
   push:
     branches: [ "master" ]
 
+
+
 jobs:
   build:
     runs-on: self-hosted
     steps:
-      
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Install Node.js
         run: | 
-          curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-          sudo apt-get install -y nodejs
+          curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
+          apt-get install -y nodejs
           node --version
           npm --version
       - name: Install docker
         run: |
-            sudo apt-get update -y
-            sudo apt install docker.io -y 
-            sudo usermod -aG docker $USER
+          apt-get update -y
+          apt-get install docker.io -y 
+          usermod -aG docker $USER
+
+  Installing_pm2_and_deploy_application:
+    needs: [build]
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: PM2 installation & Verify
+        run: |
+          npm install -g pm2
+          pm2 --version || true
+      - name: Stop existing PM2 processes
+        run: |
+          cd /home/ubuntu/actions-runner/_work/node_project/node_project/
+          pm2 delete all || true
+      - name: Start application with PM2
+        run: |
+          cd /home/ubuntu/actions-runner/_work/node_project/node_project/
+          pm2 start index.js --name "my-node-app"
+      - name: Check application status
+        run: |
+          pm2 status
+
+#   build:
+#     runs-on: self-hosted
+#     steps:
+      
+#       - name: Checkout code
+#         uses: actions/checkout@v3
+#       - name: Install Node.js
+#         run: | 
+#           curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+#           sudo apt-get install -y nodejs
+#           node --version
+#           npm --version
+#       - name: Install docker
+#         run: |
+#             sudo apt-get update -y
+#             sudo apt install docker.io -y 
+#             sudo usermod -aG docker $USER
 
 
   
 
-  Installing_pm2_and_deploy_application:
-   needs: [build]
-   runs-on: self-hosted
-   steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-    - name: PM2 installation & Verify
-      run: |
-        npm install -g pm2
-        pm2 --version || true
-    - name: Stop existing PM2 processes
-      run: |
-        cd /home/ubuntu/actions-runner/_work/node_project/node_project/
-        pm2 delete all || true
-    - name: Start application with PM2
-      run: |
-        cd /home/ubuntu/actions-runner/_work/node_project/node_project/
-         pm2 start index.js --name "my-node-app"
-    - name: Check application status
-      run: |
-           pm2 status
+#   Installing_pm2_and_deploy_application:
+#    needs: [build]
+#    runs-on: self-hosted
+#    steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v3
+#     - name: PM2 installation & Verify
+#       run: |
+#         npm install -g pm2
+#         pm2 --version || true
+#     - name: Stop existing PM2 processes
+#       run: |
+#         cd /home/ubuntu/actions-runner/_work/node_project/node_project/
+#         pm2 delete all || true
+#     - name: Start application with PM2
+#       run: |
+#         cd /home/ubuntu/actions-runner/_work/node_project/node_project/
+#          pm2 start index.js --name "my-node-app"
+#     - name: Check application status
+#       run: |
+#            pm2 status
            
       
       
