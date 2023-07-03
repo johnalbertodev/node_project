@@ -48,6 +48,7 @@ jobs:
     - name: Check application status
       run: |
            pm2 status
+           pm2 list
       
       
       
