@@ -40,7 +40,9 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
       - name: Start application
-        run: nohup node index.js > output.log &
+        run: |
+          nohup node index.js > output.log 2>&1 &
+            echo $! > app.pid
       
       
       
