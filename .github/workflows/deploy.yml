@@ -40,6 +40,7 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
       - run: pm2 start index.js
+      - run: pm2 log
 #    steps:
 #     - name: Checkout code
 #       uses: actions/checkout@v3
